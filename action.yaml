@@ -1,0 +1,25 @@
+name: 'Trelnex.MonoTag'
+description: 'Get the git tag for the specified project, bump the semver, and push a new git tag'
+author: 'Steven Kehrli'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  project_path:
+    description: 'The project path; e.g. Trelnex.Core'
+    required: true
+    type: string
+  tag_prefix:
+    description: 'A prefix to the tag name; e.g. trelnex-core-'
+    required: true
+    type: string
+outputs:
+  new_tag:
+    description: 'The new tag after running this action'
+  new_semver:
+    description: 'The new semver after running this action'
+  part:
+    description: 'The part of the semver that was bumped'
+branding:
+  icon: "git-merge"
+  color: "purple"
