@@ -5,6 +5,10 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
 inputs:
+  default_bump:
+    description: 'The default bump; e.g. minor'
+    required: false
+    type: string
   project_path:
     description: 'The project path; e.g. Trelnex.Core'
     required: true
