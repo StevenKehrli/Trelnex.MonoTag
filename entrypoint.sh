@@ -25,6 +25,7 @@ echo "*** RESULTS ***"
 
 # get the tags
 tags=$(git tag -l --sort=-v:refname)
+echo "DEBUG: tags: ${tags}"
 
 # get the old tag that looks like our tag
 tag_format="^${tag_prefix}[0-9]+\.[0-9]+\.[0-9]+$"
