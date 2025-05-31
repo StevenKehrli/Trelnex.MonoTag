@@ -21,6 +21,8 @@ echo
 # fatal: detected dubious ownership in repository at '/github/workspace'
 git config --global --add safe.directory /github/workspace
 
+git fetch --tags
+
 echo "*** DEBUG ***"
 # DEBUG: Check git repository status
 echo "DEBUG: Current directory: $(pwd)"
@@ -46,6 +48,7 @@ git ls-remote --tags origin | head -5 || echo "Failed to get remote tags"
 echo "*** RESULTS ***"
 
 # get the tags
+git fetch --tags
 tags=$(git tag -l --sort=-v:refname)
 echo "DEBUG: tags: ${tags}"
 
