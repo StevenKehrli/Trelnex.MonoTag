@@ -28,8 +28,11 @@ tags=$(git tag -l --sort=-v:refname)
 
 # get the old tag that looks like our tag
 tag_format="^${tag_prefix}[0-9]+\.[0-9]+\.[0-9]+$"
+echo "DEBUG: tag_format: ${tag_format}"
 tag_matches=$( (grep -E "${tag_format}" <<< "${tags}") || true )
+echo "DEBUG: tag_matches: ${tag_matches}"
 old_tag=$(head -n 1 <<< "${tag_matches}")
+echo "DEBUG: old_tag: ${old_tag}"
 
 # if there is no tag, start at 0.0.0
 if [[ -z "${old_tag}" ]]
