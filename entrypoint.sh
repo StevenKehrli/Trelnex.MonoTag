@@ -21,34 +21,8 @@ echo
 # fatal: detected dubious ownership in repository at '/github/workspace'
 git config --global --add safe.directory /github/workspace
 
-git fetch --tags
-
-echo "*** DEBUG ***"
-# DEBUG: Check git repository status
-echo "DEBUG: Current directory: $(pwd)"
-echo "DEBUG: Git version: $(git --version)"
-echo "DEBUG: Is this a git repo? $(git rev-parse --is-inside-work-tree 2>/dev/null || echo 'NO')"
-echo "DEBUG: Git status check:"
-git status --short 2>/dev/null || echo "Git status failed"
-
-# DEBUG: Check for tags with different methods
-echo "DEBUG: Checking tags with different commands:"
-echo "DEBUG: git tag (no options): $(git tag | wc -l) tags found"
-git tag | head -5 || echo "No tags with basic git tag"
-
-echo "DEBUG: git tag -l: $(git tag -l | wc -l) tags found"
-git tag -l | head -5 || echo "No tags with git tag -l"
-
-echo "DEBUG: git tag --list: $(git tag --list | wc -l) tags found"
-git tag --list | head -5 || echo "No tags with git tag --list"
-
-echo "DEBUG: Checking remote tags:"
-git ls-remote --tags origin | head -5 || echo "Failed to get remote tags"
-
-echo "*** RESULTS ***"
-
 # get the tags
-git fetch --tags
+git fetch --tags > /dev/null 2>&1
 tags=$(git tag -l --sort=-v:refname)
 echo "DEBUG: tags: ${tags}"
 
