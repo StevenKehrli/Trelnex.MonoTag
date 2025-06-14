@@ -1,29 +1,23 @@
 name: 'Trelnex.MonoTag'
-description: 'Get the git tag for the specified project, bump the semver, and push a new git tag'
+description: 'Automatically bump semantic version tags with configurable prefixes for monorepo projects'
 author: 'Steven Kehrli'
 runs:
   using: 'docker'
   image: 'Dockerfile'
 inputs:
-  default_bump:
-    description: 'The default bump; e.g. minor'
-    required: false
-    type: string
-  project_path:
-    description: 'The project path; e.g. Trelnex.Core'
+  tag_prefix:
+    description: 'The prefix for the tag name (e.g., "trelnex-core-" will create tags like "trelnex-core-1.2.3").'
     required: true
     type: string
-  tag_prefix:
-    description: 'A prefix to the tag name; e.g. trelnex-core-'
+  tag_part:
+    description: 'The part of the semantic version to bump. Must be one of: "major", "minor", or "patch".'
     required: true
     type: string
 outputs:
   new_tag:
-    description: 'The new tag after running this action'
+    description: 'The complete new tag that was created (including prefix)'
   new_semver:
-    description: 'The new semver after running this action'
-  part:
-    description: 'The part of the semver that was bumped'
+    description: 'The semantic version portion of the new tag (without prefix)'
 branding:
-  icon: "git-merge"
-  color: "purple"
+  icon: 'git-merge'
+  color: 'purple'
